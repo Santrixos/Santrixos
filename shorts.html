@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE STYLE OF SHORTS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <!-- Partículas -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <style>
+    /* Estilos generales */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000; /* Fondo negro */
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+.navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(45deg, #9b2d91, #d100b4); /* Degradado morado a rosa brillante */
+    box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0; /* Reduce el tamaño de la barra */
+    z-index: 1000;
+    border-radius: 25px 25px 0 0;
+    backdrop-filter: blur(12px);
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px; /* Tamaño más pequeño */
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    z-index: 1;
+    animation: floating 3s ease-in-out infinite; /* Animación flotante más dinámica */
+}
+
+.navbar a i {
+    font-size: 22px; /* Íconos más pequeños */
+    margin-bottom: 5px; /* Menos espacio entre el ícono y el texto */
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 0.5), 
+        0 0 30px rgba(255, 255, 255, 0.7), 
+        0 0 50px rgba(255, 255, 255, 0.9), 
+        0 0 75px rgba(255, 255, 255, 1); /* Efecto neón más visible */
+    transition: all 0.4s ease-in-out;
+}
+
+/* Efecto de hover - expansión y cambio de color */
+.navbar a:hover {
+    color: #ffffff;
+    transform: translateY(-12px) scale(1.2); /* Aumenta más al hacer hover */
+    filter: brightness(1.2);
+}
+
+.navbar a:hover i {
+    transform: scale(1.4); /* Icono crece un poco más al hacer hover */
+    text-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.6), 
+        0 0 60px rgba(255, 255, 255, 0.8), 
+        0 0 100px rgba(255, 255, 255, 1), 
+        0 0 150px rgba(255, 255, 255, 1);
+}
+
+/* Efecto de línea brillante al pasar el cursor */
+.navbar a:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+.navbar a:hover:before {
+    opacity: 1;
+    width: 100%;
+    background: linear-gradient(45deg, #9b2d91, #d100b4); /* Degradado brillante */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+/* Animación de flotación con mayor movimiento */
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px); /* Menos movimiento hacia arriba */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Ajustes generales */
+.content {
+    padding: 20px;
+    margin-bottom: 100px;
+}
+    h1 {
+      margin: 20px 0;
+      color: #ffffff;
+    }
+
+    /* Fondo de partículas */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Barra de búsqueda */
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .search-bar input {
+      width: 60%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .search-bar button {
+      background: #ff00f1; /* Rojo YouTube */
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background: #ff15bd;
+    }
+
+    /* Contenedor de shorts */
+    .shorts-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .short {
+      background: #1e1e1e;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .short:hover {
+      transform: scale(1.05);
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .short-title {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Contenedor de partículas -->
+  <div id="particles-js"></div>
+
+  <h1>THE STYLE OF SHORTS</h1>
+
+  <!-- Barra de búsqueda -->
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Buscar shorts...">
+    <button onclick="searchShorts()">Buscar</button>
+  </div>
+
+  <!-- Contenedor de shorts -->
+  <div class="shorts-container" id="shorts-container">
+    <!-- Los shorts se generarán dinámicamente aquí -->
+  </div>
+  
+  
+  
+  
+ <div class="navbar">
+    <a href="index1.html"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="buscador.html"><i class="fas fa-search"></i><span>Buscar</span></a>
+    <a href="shorts.html"><i class="fas fa-compass"></i><span>Explorar</span></a>
+    <a href="álbum.html"><i class="fas fa-music"></i><span>Biblioteca</span></a>
+    <a href="ajustes/index.html"><i class="fas fa-cog"></i><span>Ajustes</span></a>
+  </div>
+  
+  
+  
+  
+  <script>
+    // API Key de YouTube
+    const API_KEY = "AIzaSyCVwFlN3vOjhkEhkQRcpEW-LtL-IGFhiWA";
+
+    // Buscar shorts
+    async function searchShorts() {
+      const query = document.getElementById("search").value;
+      if (!query) {
+        alert("Por favor, ingresa un término de búsqueda.");
+        return;
+      }
+
+      const shortsContainer = document.getElementById("shorts-container");
+      shortsContainer.innerHTML = ""; // Limpiar resultados previos
+
+      const response = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=${query}&videoDuration=short&key=${API_KEY}`
+      );
+      const data = await response.json();
+
+      // Mostrar resultados
+      data.items.forEach((item) => {
+        const videoId = item.id.videoId;
+        const title = item.snippet.title;
+
+        // Crear tarjeta de short
+        const short = document.createElement("div");
+        short.classList.add("short");
+
+        short.innerHTML = `
+          <iframe 
+            src="https://www.youtube.com/embed/${videoId}?autoplay=0&mute=1&rel=0"
+            allow="autoplay; encrypted-media" 
+            data-video-id="${videoId}">
+          </iframe>
+          <p class="short-title">${title}</p>
+        `;
+
+        shortsContainer.appendChild(short);
+      });
+
+      // Activar reproducción automática al desplazar
+      observeVideos();
+    }
+
+    // Observar videos en pantalla
+    function observeVideos() {
+      const options = {
+        root: null, // Ventana completa
+        threshold: 0.5, // 50% del video visible
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const iframe = entry.target;
+          if (entry.isIntersecting) {
+            // Reproducir video
+            iframe.src = `https://www.youtube.com/embed/${iframe.dataset.videoId}?autoplay=1&mute=1&rel=0`;
+          } else {
+            // Pausar video
+            iframe.src = `https://www.youtube.com/embed/${iframe.dataset.videoId}?autoplay=0&mute=1&rel=0`;
+          }
+        });
+      }, options);
+
+      document.querySelectorAll("iframe").forEach((iframe) => observer.observe(iframe));
+    }
+
+    // Configuración de partículas
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 100,
+          "density": { "enable": true, "value_area": 800 }
+        },
+        "color": { "value": "#ffffff" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000000" },
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "grab": { "distance": 400, "line_linked": { "opacity": 1 } },
+          "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8 },
+          "repulse": { "distance": 200, "duration": 0.4 },
+          "push": { "particles_nb": 4 },
+          "remove": { "particles_nb": 2 }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>

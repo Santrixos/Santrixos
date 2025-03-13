@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE STYLE OF MUSIC</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0014;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: #b300ff;
+            text-shadow: 0 0 10px #b300ff, 0 0 20px #8000ff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(20, 0, 40, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(179, 0, 255, 0.5);
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid #b300ff;
+            border-radius: 5px;
+            background-color: #220033;
+            color: #b300ff;
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            background: linear-gradient(45deg, #ff00dc, #b300ff);
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #ff00b2, #8000ff);
+            box-shadow: 0 0 15px #b300ff;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .album-container {
+            margin-top: 20px;
+        }
+
+        .album {
+            background: rgba(40, 0, 80, 0.6);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .album img {
+            width: 60px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .album h3 {
+            color: #ffffff;
+            font-size: 14px;
+            margin: 0;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .play-btn {
+            padding: 8px 15px;
+            background-color: #ff00dc;
+            color: black;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+
+        .play-btn:hover {
+            background-color: #8000ff;
+            color: white;
+        }
+
+        #player {
+            display: none;
+        }
+
+        /* Barra de navegación flotante y centrada con bordes redondeados arriba */
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #8a0082, #d100b4);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+            animation: floating 2s ease-in-out infinite; /* Animación de flotado */
+            border-top-left-radius: 20px; /* Bordes redondeados en la parte superior */
+            border-top-right-radius: 20px; /* Bordes redondeados en la parte superior */
+        }
+
+        /* Animación de flotado */
+        @keyframes floating {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: color 0.3s ease-in-out, transform 0.3s;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.3); /* Efecto de neón */
+        }
+
+        .navbar a:hover {
+            color: #a8dadc;
+        }
+
+        .navbar a i {
+            font-size: 24px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.5); /* Efecto de neón */
+            animation: floatingIcon 2s ease-in-out infinite; /* Animación flotante para los iconos */
+        }
+
+        /* Animación de flotado para los iconos */
+        @keyframes floatingIcon {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .navbar a:hover i {
+            transform: scale(1.2);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 50px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>THE STYLE OF MUSIC</h1>
+
+        <div class="controls">
+            <button id="prevBtn" onclick="prevSong()">⏮ Anterior</button>
+            <button id="playBtn" onclick="playPause()">▶ Reproducir</button>
+            <button id="nextBtn" onclick="nextSong()">⏭ Siguiente</button>
+        </div>
+
+        <input type="text" id="search-query" placeholder="🔍 Busca tu música favorita...">
+        <button onclick="searchMusic()">Buscar</button>
+
+        <div class="album-container" id="album-container"></div>
+    </div>
+
+    <div id="player"></div>
+
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <a href="index1.html"><i class="fas fa-home"></i><span>Inicio</span></a>
+        <a href="buscador.html"><i class="fas fa-search"></i><span>Buscar</span></a>
+        <a href="shorts.html"><i class="fas fa-compass"></i><span>Explorar</span></a>
+        <a href="álbum.html"><i class="fas fa-music"></i><span>Biblioteca</span></a>
+        <a href="ajustes/index.html"><i class="fas fa-cog"></i><span>Ajustes</span></a>
+    </div>
+   
+    <script>
+        let player;
+        let currentVideoIndex = 0;
+        let videoIds = [];
+        let isPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            console.log("Reproductor listo.");
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                nextSong(); // Reproduce la siguiente canción automáticamente
+            }
+        }
+
+        function searchMusic() {
+            const query = document.getElementById('search-query').value + " lyrics";
+            const apiKey = 'AIzaSyCVwFlN3vOjhkEhkQRcpEW-LtL-IGFhiWA';
+            const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${query}&type=video&videoCategoryId=10&key=${apiKey}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    let uniqueVideos = new Map();
+                    data.items.forEach(video => {
+                        uniqueVideos.set(video.id.videoId, video);
+                    });
+
+                    videoIds = [...uniqueVideos.keys()]; // Elimina duplicados
+                    displayResults([...uniqueVideos.values()]);
+                })
+                .catch(error => console.error('Error al buscar videos:', error));
+        }
+
+        function displayResults(videos) {
+            const albumContainer = document.getElementById('album-container');
+            albumContainer.innerHTML = '';
+
+            videos.forEach((video, index) => {
+                const album = document.createElement('div');
+                album.className = 'album';
+
+                album.innerHTML = `
+                    <img src="${video.snippet.thumbnails.medium.url}" alt="Imagen">
+                    <h3>${video.snippet.title}</h3>
+                    <button class="play-btn" onclick="playSpecificSong(${index})">▶</button>
+                `;
+
+                albumContainer.appendChild(album);
+            });
+        }
+
+        function playSong(videoId) {
+            player.loadVideoById(videoId);
+            isPlaying = true;
+            document.getElementById('playBtn').innerText = '⏸ Pausar';
+        }
+
+        function playSpecificSong(index) {
+            currentVideoIndex = index;
+            playSong(videoIds[currentVideoIndex]);
+        }
+
+        function playPause() {
+            if (isPlaying) {
+                player.pauseVideo();
+                isPlaying = false;
+                document.getElementById('playBtn').innerText = '▶ Reproducir';
+            } else {
+                player.playVideo();
+                isPlaying = true;
+                document.getElementById('playBtn').innerText = '⏸ Pausar';
+            }
+        }
+
+        function prevSong() {
+            currentVideoIndex = (currentVideoIndex > 0) ? currentVideoIndex - 1 : videoIds.length - 1;
+            playSong(videoIds[currentVideoIndex]);
+        }
+
+        function nextSong() {
+            currentVideoIndex = (currentVideoIndex < videoIds.length - 1) ? currentVideoIndex + 1 : 0;
+            playSong(videoIds[currentVideoIndex]);
+        }
+
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+    </script>
+
+</body>
+</html>
